@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fresh Cut Juice Co. — Small-batch juice, squeezed by hand</title>
+<meta name="description" content="Fresh-squeezed juice blends made by hand in small batches. $5 to $8 a bottle. Text to order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+  /* ============ EDIT COLORS HERE ============ */
+  :root {
+    --sun: #FFD23F;      /* hero yellow */
+    --berry: #E63950;    /* strawberry red */
+    --citrus: #FF8A3D;   /* orange */
+    --leaf: #2F9E5B;     /* green */
+    --ink: #3B1145;      /* deep plum text */
+    --bg: #FFFFFF;
+    --soft: #FFF3C4;     /* pale yellow panels */
+    --muted: #6E4F74;
+    --on-sun: #3B1145;
+    --display: "Shrikhand", "Cooper Black", Georgia, serif;
+    --body: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #FFF3D6;
+      --bg: #22102A;
+      --soft: #331A3D;
+      --muted: #D9C3DE;
+      color-scheme: dark;
+    }
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  img, svg { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--berry); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(1100px, 100% - 2.5rem); margin-inline: auto; }
+
+  /* ============ HEADER ============ */
+  header {
+    background: var(--sun);
+    color: var(--on-sun);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; gap: 1rem; }
+  .logo { font-family: var(--display); font-size: 1.5rem; text-decoration: none; line-height: 1; }
+  .nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; font-weight: 600; }
+  .nav ul a { text-decoration: none; }
+  .nav ul a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  @media (max-width: 640px) { .nav ul li:not(:last-child) { display: none; } }
+
+  /* ============ HERO ============ */
+  .hero { background: var(--sun); color: var(--on-sun); position: relative; padding-bottom: 5rem; }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 2rem; padding-top: 2rem; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7vw, 5.4rem);
+    line-height: 0.98;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .hero p { font-size: 1.2rem; max-width: 34ch; margin: 0 0 2rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 800;
+    text-decoration: none;
+    border: 3px solid #3B1145;
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-main { background: var(--berry); color: #fff; box-shadow: 4px 4px 0 #3B1145; }
+  .btn-alt { background: transparent; color: #3B1145; }
+  .bottle { width: 100%; max-width: 290px; justify-self: center; }
+  .juice { animation: fill 2.2s cubic-bezier(.3,.7,.3,1) .3s both; }
+  @keyframes fill { from { transform: translateY(230px); } to { transform: translateY(0); } }
+  .drip { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; display: block; }
+  .drip path { fill: var(--bg); }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: left; }
+    .bottle { max-width: 180px; order: -1; justify-self: start; }
+  }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 4.5rem 0; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+    margin: 0 0 0.6rem;
+  }
+  .intro { color: var(--muted); max-width: 52ch; margin: 0 0 2.5rem; }
+
+  /* Menu board */
+  .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3.5rem; list-style: none; padding: 0; margin: 0; }
+  .menu li {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.3rem 0;
+    border-bottom: 2px dashed color-mix(in srgb, var(--ink) 25%, transparent);
+  }
+  .swatch { width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 3px solid var(--ink); }
+  .menu h3 { margin: 0 0 0.2rem; font-size: 1.3rem; font-weight: 800; }
+  .menu p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+  .price { font-family: var(--display); font-size: 1.6rem; line-height: 1; }
+  @media (max-width: 760px) { .menu { grid-template-columns: 1fr; } }
+
+  /* About */
+  .about { background: var(--soft); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about p { max-width: 60ch; }
+  .promises { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .promises li { display: flex; gap: 0.9rem; align-items: center; font-size: 1.2rem; font-weight: 600; }
+  .promises span { font-size: 1.8rem; }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+  /* Find us */
+  .find-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .address { font-size: 1.3rem; font-weight: 600; margin: 0 0 1.5rem; font-style: normal; }
+  table { border-collapse: collapse; width: 100%; max-width: 380px; }
+  td { padding: 0.55rem 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+  td:last-child { text-align: right; font-weight: 600; }
+  .find-grid .btn-alt { color: var(--ink); border-color: var(--ink); margin-top: 0.5rem; }
+  @media (max-width: 760px) { .find-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  /* Contact */
+  .contact { background: var(--berry); color: #fff; text-align: center; }
+  .contact h2 { color: #fff; }
+  .contact .intro { color: #FFE3E7; margin-inline: auto; }
+  .phone { font-family: var(--display); font-size: clamp(2.2rem, 8vw, 4rem); text-decoration: none; display: inline-block; margin-bottom: 2rem; }
+  .contact .btns { justify-content: center; }
+  .contact .btn { background: #fff; color: #3B1145; }
+  .contact .btn-main { background: var(--sun); }
+
+  footer { padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.92rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .juice { animation: none; }
+    .btn { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav wrap" aria-label="Main">
+    <a class="logo" href="#top">Fresh Cut Juice Co.</a>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#story">Our story</a></li>
+      <li><a href="#find">Find us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Juice squeezed fresh, one batch at a time.</h1>
+      <p>Ginger, strawberries, citrus and whatever’s ripe this week, blended by hand and bottled for $5 to $8.</p>
+      <div class="btns">
+        <a class="btn btn-main" href="sms:+15551234567">Text to order</a>
+        <a class="btn btn-alt" href="#menu">See the menu</a>
+      </div>
+    </div>
+
+    <svg class="bottle" viewBox="0 0 220 360" role="img" aria-label="A bottle filled with layers of green, orange and red juice">
+      <defs>
+        <clipPath id="body">
+          <path d="M80 70 h60 q0 30 25 55 v195 q0 28 -28 28 h-54 q-28 0 -28 -28 v-195 q25 -25 25 -55z"/>
+        </clipPath>
+      </defs>
+      <!-- orange slice -->
+      <g transform="translate(168 300)">
+        <circle r="40" fill="#FF8A3D" stroke="#3B1145" stroke-width="4"/>
+        <circle r="31" fill="#FFC27A"/>
+        <g stroke="#FF8A3D" stroke-width="3">
+          <line x1="0" y1="-31" x2="0" y2="31"/><line x1="-31" y1="0" x2="31" y2="0"/>
+          <line x1="-22" y1="-22" x2="22" y2="22"/><line x1="-22" y1="22" x2="22" y2="-22"/>
+        </g>
+      </g>
+      <!-- juice layers -->
+      <g clip-path="url(#body)">
+        <rect x="40" y="70" width="140" height="290" fill="#FFF8E1" opacity=".6"/>
+        <g class="juice">
+          <rect x="40" y="118" width="140" height="70" fill="#FFD23F"/>
+          <rect x="40" y="186" width="140" height="62" fill="#FF8A3D"/>
+          <rect x="40" y="246" width="140" height="56" fill="#E63950"/>
+          <rect x="40" y="300" width="140" height="60" fill="#2F9E5B"/>
+          <path d="M40 120 q18 -10 35 0 t35 0 t35 0 t35 0 v-6 h-140z" fill="#FFD23F"/>
+        </g>
+      </g>
+      <!-- glass outline -->
+      <path d="M80 70 h60 q0 30 25 55 v195 q0 28 -28 28 h-54 q-28 0 -28 -28 v-195 q25 -25 25 -55z" fill="none" stroke="#3B1145" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M68 150 v150" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+      <!-- cap + leaf -->
+      <rect x="74" y="40" width="72" height="32" rx="8" fill="#2F9E5B" stroke="#3B1145" stroke-width="5"/>
+      <path d="M118 40 q10 -34 46 -32 q-6 34 -46 32z" fill="#7BD389" stroke="#3B1145" stroke-width="4" stroke-linejoin="round"/>
+      <!-- label -->
+      <rect x="66" y="196" width="88" height="44" rx="10" fill="#fff" stroke="#3B1145" stroke-width="4"/>
+      <text x="110" y="225" text-anchor="middle" font-family="Shrikhand, Georgia, serif" font-size="17" fill="#3B1145">Fresh Cut</text>
+    </svg>
+  </div>
+  <svg class="drip" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 C100 70 160 10 260 35 S420 70 520 30 S700 0 800 38 S1000 70 1100 30 S1200 40 1200 40 V70 H0Z"/>
+  </svg>
+</div>
+
+<!-- ============ MENU ============ -->
+<!-- To add a blend, copy one <li>…</li> block and change the color, name, ingredients and price. -->
+<section id="menu">
+  <div class="wrap">
+    <h2>This week’s blends</h2>
+    <p class="intro">Every bottle is squeezed the same day. Blends change with what’s in season, so text ahead if you want to hold one.</p>
+    <ul class="menu">
+      <li>
+        <div class="swatch" style="background:#E63950"></div>
+        <div><h3>Strawberry Fade</h3><p>Strawberry, apple, lime</p></div>
+        <div class="price">$7</div>
+      </li>
+      <li>
+        <div class="swatch" style="background:#FF8A3D"></div>
+        <div><h3>Ginger Line-Up</h3><p>Orange, carrot, ginger, lemon</p></div>
+        <div class="price">$6</div>
+      </li>
+      <li>
+        <div class="swatch" style="background:#2F9E5B"></div>
+        <div><h3>Green Taper</h3><p>Cucumber, green apple, spinach, lemon</p></div>
+        <div class="price">$7</div>
+      </li>
+      <li>
+        <div class="swatch" style="background:#FFD23F"></div>
+        <div><h3>Pineapple Shape-Up</h3><p>Pineapple, mango, mint</p></div>
+        <div class="price">$8</div>
+      </li>
+      <li>
+        <div class="swatch" style="background:#9B1D4A"></div>
+        <div><h3>Beet Buzz Cut</h3><p>Beet, apple, ginger</p></div>
+        <div class="price">$7</div>
+      </li>
+      <li>
+        <div class="swatch" style="background:#FFB238"></div>
+        <div><h3>Citrus Trim</h3><p>Orange, grapefruit, lemon</p></div>
+        <div class="price">$5</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story" class="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>Started between haircuts</h2>
+      <p>I started making juice for myself, then for clients sitting in my chair. People kept asking for a bottle to take home, so now I squeeze a fresh batch every day and sell it right from the shop.</p>
+      <p>Nothing fancy, just real fruit, a good squeezer and blends I’d drink myself.</p>
+    </div>
+    <ul class="promises">
+      <li><span aria-hidden="true">🍓</span> Real fruit, nothing from concentrate</li>
+      <li><span aria-hidden="true">🫚</span> No added sugar</li>
+      <li><span aria-hidden="true">🍋</span> Squeezed fresh the same day</li>
+      <li><span aria-hidden="true">🥤</span> Small batches, so they sell out</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FIND US ============ -->
+<section id="find">
+  <div class="wrap find-grid">
+    <div>
+      <h2>Come grab a bottle</h2>
+      <address class="address">Inside Your Barbershop Name<br>123 Main Street<br>Your City, ST 00000</address>
+      <a class="btn btn-alt" href="https://www.google.com/maps/search/?api=1&query=123+Main+Street" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div>
+      <table aria-label="Hours">
+        <tr><td>Monday</td><td>Closed</td></tr>
+        <tr><td>Tuesday – Friday</td><td>10am – 7pm</td></tr>
+        <tr><td>Saturday</td><td>9am – 5pm</td></tr>
+        <tr><td>Sunday</td><td>Closed</td></tr>
+      </table>
+      <p class="intro" style="margin-top:1rem">Once today’s batch is gone, it’s gone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Order ahead or ask about a blend</h2>
+    <p class="intro">Text or call to reserve bottles, place a bigger order for an event, or ask what’s fresh today.</p>
+    <a class="phone" href="tel:+15551234567">(555) 123-4567</a>
+    <div class="btns">
+      <a class="btn btn-main" href="sms:+15551234567">Send a text</a>
+      <a class="btn" href="tel:+15551234567">Call</a>
+      <a class="btn" href="mailto:hello@freshcutjuice.com">Email</a>
+      <a class="btn" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fresh Cut Juice Co. Squeezed fresh, every day.</div>
+</footer>
+
+</body>
+</html>
